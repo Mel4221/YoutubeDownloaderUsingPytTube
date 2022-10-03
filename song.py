@@ -12,10 +12,16 @@ def Download(song,author,songName):
           
           
           Video=song
-          path = "downloads/"+author+"/"
-          authorDir = path
+          down = "downloads/"
+          downPath = Path(down)
+          if downPath.is_dir()==False:
+                    os.mkdir(downPath)
+                    
+          path = os.path.join(down,author)
+          
+          authorDir = Path(path)
           if authorDir.is_dir()==False:
-                     os.mkdir(path)
+                     os.mkdir(authorDir)
 
                      
           yt=YouTube(Video)
@@ -33,6 +39,8 @@ def Download(song,author,songName):
           file=path+yt.title
           stream = yt.streams.get_by_itag(vtag)
           check = Path(file)
+          print(check+" "+file+" "+author+" "+songName)
+          input()
           if check.is_file() == False:
                     stream.download(output_path = path)
                     print(yt.title)
