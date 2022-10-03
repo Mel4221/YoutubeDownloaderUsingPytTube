@@ -15,5 +15,5 @@ with open('list.txt') as f:
                     songName = author.replace(':','')+" "+line+" letra" 
                     print(songName)
                     youtubeLink = FindSong(songName)
-                    Download(youtubeLink,author.replace(" ",'_'),line)
+                    Download(youtubeLink,author,line)
                     

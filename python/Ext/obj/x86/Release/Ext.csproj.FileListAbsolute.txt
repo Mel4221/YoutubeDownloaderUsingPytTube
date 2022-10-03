@@ -1,0 +1,3 @@
+/home/mel/Documents/python/Dpy/python/Ext/bin/Release/Ext.exe
+/home/mel/Documents/python/Dpy/python/Ext/obj/x86/Release/Ext.csproj.CoreCompileInputs.cache
+/home/mel/Documents/python/Dpy/python/Ext/obj/x86/Release/Ext.exe
