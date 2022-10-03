@@ -8,8 +8,16 @@ from pytube import YouTube
 n = 0
 def Download(song,author,songName):
           
+         
+          
+          
           Video=song
           path = "downloads/"+author+"/"
+          authorDir = path
+          if authorDir.is_dir()==False:
+                     os.mkdir(path)
+
+                     
           yt=YouTube(Video)
           print(yt.title)
           lst = yt.streams.filter()
