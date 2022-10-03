@@ -2,7 +2,7 @@ import sys
 from pytube import Search
 from pytube import YouTube
 
-
+          #this finds the song's link using the name provided
 def FindSong(songName):
           s = Search(songName)
           youTubeLink = "https://www.youtube.com/watch?v="

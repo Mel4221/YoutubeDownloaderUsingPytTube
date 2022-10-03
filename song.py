@@ -8,59 +8,45 @@ from pytube import YouTube
 n = 0
 errors = 0
 completed = 0
-def Download(song,author,songName):
-          
-          try:
-                    Video=song
-                    down = "downloads/"
-                    downPath = Path(down)
-                    if downPath.is_dir()==False:
-                              os.mkdir(downPath)
-                    
-                    path = os.path.join(down,author)
-                    authorDir = Path(path)
-                    if authorDir.is_dir()==False:
-                              os.mkdir(authorDir)
 
-                     
-                    yt=YouTube(Video)
-                    print(yt.title)
-                    lst = yt.streams.filter()
-                    for v in lst:
-                              Clear()                              
-                              print("Downloading "+songName)
-                              print("Completed "+str(completed) +" "+"Failed "+str(errors))
-                              
-                              
-                              
-                    n + 1
-                    vtag=yt.streams.filter(only_audio=True).get_audio_only().itag
-                    #print(vtag)
-                    oldExt = ".mp4"
-                    newExt = ".mp3"
-                    file=path+yt.title
-                    stream = yt.streams.get_by_itag(vtag)
-                    check = Path(file)
-                    #print(check+" "+file+" "+author+" "+songName)
-                    #input()
-                    if check.is_file() == False:
-                              stream.download(output_path = path)
-                              print(yt.title)
-                              os.rename(os.path.join(file,oldExt),os.path.join(file,newExt)) 
-                              completed + 1     
-                    else:     
-                              print(file+" Downloaded Already!!!")
-          
 
-          except:
-                    errors + 1                    
-                             
-          
+def Download(song, author, songName):
 
-          #print("Waiting for an input")
-          #text = input()
-          
+    try:
+        Video = song
+        down = "downloads/"
+        downPath = Path(down)
+        if downPath.is_dir() == False:
+            os.mkdir(downPath)
+
+        authorDir = Path(down+author)
+        if authorDir.is_dir() == False:
+            os.mkdir(authorDir)
+
+        path = os.path.join(down, author)
+        yt = YouTube(Video)
+        print(yt.title)
+        lst = yt.streams.filter()
+        for v in lst:
+            Clear()
+            print("Downloading "+songName)
+            print("Completed "+str(completed) + " "+"Failed "+str(errors))
+
+        vtag = yt.streams.filter(only_audio=True).get_audio_only().itag
+
+        file = stream.download(output_path=path, filename=".mp3", filename_prefix=yt.title,
+                               skip_existing=True, timeout=10000, max_retries=10)
+        
+        print("File Location: "+file+" Downloaded Completed!!!")
+    
+        print(yt.title)
+   
+        completed + 1
+
+    except:
+        errors + 1
+
+    #print("Waiting for an input")
+    #text = input()
+
         #  yt.streams.get_by_itag(vtag).download(out_path="downloads/",filename="test.mp4")
-          
-          
-          

@@ -1,12 +1,11 @@
-import sys
-import subprocess
 from FileReader import Reader
+from ExtentionUpdater import UpdateExtentions
 
 
 
 def Main():
           
-       #Reader()
-       subprocess.Popen("mono Ext.exe", shell=True, stdout=subprocess.PIPE).stdout.read()
-       return
+        Reader()
+        UpdateExtentions()
+        return 0
  
