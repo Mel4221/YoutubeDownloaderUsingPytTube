@@ -148,3 +148,25 @@ Por si no hay mañana
 Dios sabe lo que hace 
 Dios me dijo que no falta 5 para la 12
 Es que mi Dios es así
+
+
+
+
+
+
+
+
+
+
+
+    """    global Fails
+        Fails = Fails + 1
+        Log("searcher", songName)
+        PrintStatus('\033[91m')
+        print("Searcher Error")
+        return ""
+
+
+# print(listOfLinks)  # for testing
+# print(firstVideoId)
+# Final Video with the link`

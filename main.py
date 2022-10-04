@@ -1,7 +1,7 @@
-from FileReader import Reader
+from FileReader import Read
 
 def Main():
-          
-        Reader()
-        return 0
+          Read()
+          return 0
+Main()
  

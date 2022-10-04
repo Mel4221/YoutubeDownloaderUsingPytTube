@@ -1,17 +1,35 @@
+from Logger import Log
 import sys
 from pytube import Search
 from pytube import YouTube
+from song import Fails, PrintStatus
 
-          #this finds the song's link using the name provided
-def FindSong(songName):
-          s = Search(songName)
-          youTubeLink = "https://www.youtube.com/watch?v="
-          listOfLinks = str(s.results[0])
-          ida = listOfLinks.index('=')+1
-          idb = listOfLinks.index('>')
-          firstVideoId = listOfLinks[ida:idb]
-          video = youTubeLink+firstVideoId
-          return video
-# print(listOfLinks)  # for testing
-# print(firstVideoId)
-# Final Video with the link
+# this finds the song's link using the name provided
+searchData = ""
+
+
+def FindSong(song):
+   # try:
+   
+   
+                    songName = song     
+                    print("Waitting for value : "+songName) 
+                    if songName.find("http") >=0:
+                              songName = songName[songName.index('=')+1:len(songName)-1]
+                    #print("Finally: "+songName)
+                    
+                    s  = Search(songName)
+                    youTubeLink = "https://www.youtube.com/watch?v="
+                    listOfLinks = str(s.results[0])
+                    ida = listOfLinks.index('=')+1
+                    idb = listOfLinks.index('>')
+                    firstVideoId = listOfLinks[ida:idb]
+                    video = youTubeLink+firstVideoId
+                    print("youtube link : "+video)
+                    global searchData
+                    searchData = video
+                    #input()
+                    return video
+                            
+    #except:
+
