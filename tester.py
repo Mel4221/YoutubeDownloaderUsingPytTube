@@ -15,12 +15,16 @@ def GetVideo():
           videoLink = FindSong("yo soy tu gominola")
           yt = YouTube(videoLink)
           #print("Youtube Link: "+videoLink)
+
+          
+          print("Please Press Enter")
+          input()
           """
                     Now im trying to work with the metadata or anything
                     that can give's me more details about how this is working right this moment
           """ 
           
-          
+           
 def Tester():
           GetVideo()
      
