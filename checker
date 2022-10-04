@@ -1,0 +1,8 @@
+#!/bin/bash
+
+
+while : 
+do
+	du downloads -h
+	sleep 1
+done 

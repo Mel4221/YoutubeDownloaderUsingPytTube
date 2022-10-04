@@ -1,4 +1,5 @@
 import sys
+from Logger import LogLinks
 from song import Download
 from Searcher import FindSong
 author = ""
@@ -16,4 +17,5 @@ with open('list.txt') as f:
                     print(songName)
                     youtubeLink = FindSong(songName)
                     Download(youtubeLink,author,line)
+                    LogLinks(youtubeLink)
                     
