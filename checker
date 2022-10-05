@@ -3,6 +3,8 @@
 
 while : 
 do
+	
 	du downloads -h
 	sleep 1
+	clear
 done 

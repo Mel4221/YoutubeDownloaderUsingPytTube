@@ -1,24 +1,29 @@
-import sys
-import tempfile
 import moviepy.editor as mp
 import regex
-from datetime import datetime
 from pathlib import Path
 import os
 from pytube import YouTube
-from Searcher import FindSong
-from array import array
+from song import Completed
+from FileReader import * 
 
 
 DownloadDir = Path("downloads")
-  
+DownloadCount = 0
+Completed = 0 
+Fail = 0 
+Attemps = 1
 def DownloadSong(song, authorName, songName):
-   #try:      
+   try:      
           
           videoLink = song #FindSong("yo soy tu gominola")
           yt = YouTube(videoLink)
+          if songName == "":
+                    print("Downloading a Direct link...")
+                    songName = yt.title
+                    authorName = "link"
+                    
           clearName = regex.sub(r'[^\w]', ' ',authorName)
-          author = clearName.replace(" ","")
+          author = clearName.replace(" ","_")
           fileName = "temp.mp4" #regex.sub(r'[^\w]', ' ',yt.title)
           
           authorDir = Path(author)
@@ -31,14 +36,14 @@ def DownloadSong(song, authorName, songName):
                     try:
                               os.mkdir(DownloadDir)
                     except:
-                              print("..........................")
+                              print("Already Created..........................")
                         
           if authorDir.is_dir()==False :
                     print("Creatting Author Folder '"+str(author)+"'")
                     try:
                               os.mkdir(path)
                     except:
-                              print("..........................")
+                              print("Already Created..........................")
     
           #Download File
           tempFile = Path(path+"/"+fileName)
@@ -47,11 +52,11 @@ def DownloadSong(song, authorName, songName):
                     try:
                               os.remove(pathWithFile)
                     except:
-                              print("..........................")
-                    
+                              print("Everything Clear.............................")
+          PrintStatus(authorName)
           print("Downloading Video "+songName)
           filter = yt.streams.filter(file_extension='mp4').get_lowest_resolution().download(output_path=path+"/", filename=fileName, filename_prefix="",
-                    skip_existing=True, timeout=10000, max_retries=10)
+                    skip_existing=True, timeout=3600000, max_retries=10)
           
           print("Downloaded Completed!!!")
           print(filter)
@@ -66,23 +71,39 @@ def DownloadSong(song, authorName, songName):
           print("Deleting Temporal File")
           os.remove(pathWithFile)
           print("Completed!!!")
+          global DownloadCount
+          DownloadCount = DownloadCount - 1
+          global Completed 
+          Completed = Completed + 1 
           #os.makedirs("downloads/temp")
           
-   #except:
-    #      print("Error Type")
-          #print("Please Press Enter")
-          #input()
-          """
-                    Now im trying to work with the metadata or anything
-                    that can give's me more details about how this is working right this moment
-          """ 
+   except:
+          global Fail,Attemps
+          Fail = Fail + 1 
+          print("Error While downloading a song or converting it")
+          Log("DownLoadError",song+"|"+authorName+"|"+songName+"|")
+          if Attemps < 3:
+                    Attemps = Attemps + 1
+                    DownloadSong(song, authorName, songName)
+          else:
+                    
+                    return
+  
           
 
+
+def PrintStatus(authorName):
+          global Fail,DownloadCount,Completed,Attemps
+         
+          print("Status: Completed: "+str(Completed)+" Fail: "+str(Fail)+" Missing: "+str(DownloadCount)+" Attemps: "+str(Attemps))
+          print("Current Author: "+authorName)
         
- 
-def Tester():
-          GetVideo()
+def SetGoal(goal):
+          global DownloadCount
+          DownloadCount = goal
           
+          
+
           
           
      
