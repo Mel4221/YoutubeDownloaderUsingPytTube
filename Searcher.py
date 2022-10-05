@@ -13,7 +13,7 @@ def FindSong(song):
    
    
                     songName = song     
-                    print("Waitting for value : "+songName) 
+                    print("Finding Link for : "+songName) 
                     if songName.find("http") >=0:
                               songName = songName[songName.index('=')+1:len(songName)-1]
                     #print("Finally: "+songName)
@@ -25,7 +25,7 @@ def FindSong(song):
                     idb = listOfLinks.index('>')
                     firstVideoId = listOfLinks[ida:idb]
                     video = youTubeLink+firstVideoId
-                    print("youtube link : "+video)
+                    print("Link Founded : "+video)
                     global searchData
                     searchData = video
                     #input()
